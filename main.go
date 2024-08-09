@@ -54,7 +54,7 @@ func main() {
 				if player.Username != serverConn.IdentityData().DisplayName && player.Username != "" {
 					appendSkin(player.Username, player.Skin)
 
-					fmt.Println("> Parsing " + player.Username + ".")
+					fmt.Println("> Parsing " + player.Username + "...")
 				}
 			}
 		}
