@@ -30,7 +30,9 @@ func main() {
 	fmt.Scan(&RemoteAddress)
 
 	AssetPath = "assets/" + strings.Replace(RemoteAddress, ":", "-", -1)
-	_ = os.Mkdir(AssetPath, 0777)
+
+	os.Mkdir("assets", 0777)
+	os.Mkdir(AssetPath, 0777)
 
 	serverConn, err := minecraft.Dialer{
 		TokenSource: TokenSource,
@@ -65,7 +67,7 @@ var DefaultSkinGeometry = `{"format_version":"1.12.0","minecraft:geometry":[{"bo
 func appendSkin(n string, s protocol.Skin) {
 	r := fmt.Sprint(rand.IntN(99999999))
 	if string(s.SkinGeometry) != DefaultSkinGeometry && string(s.SkinGeometry) != "null" && len(s.SkinGeometry) != 0 {
-		_ = os.Mkdir(AssetPath+"/"+n, 0777)
+		os.Mkdir(AssetPath+"/"+n, 0777)
 		f, _ := os.Create(AssetPath + "/" + n + "/" + r + "_skin.png")
 		writeSkinPng(int(s.SkinImageWidth), int(s.SkinImageHeight), s.SkinData, f)
 
@@ -73,7 +75,7 @@ func appendSkin(n string, s protocol.Skin) {
 	}
 
 	if string(s.CapeData) != "null" && len(s.CapeData) != 0 {
-		_ = os.Mkdir(AssetPath+"/"+n, 0777)
+		os.Mkdir(AssetPath+"/"+n, 0777)
 		f, _ := os.Create(AssetPath + "/" + n + "/" + r + "_cape.png")
 		writeSkinPng(int(s.CapeImageWidth), int(s.CapeImageHeight), s.CapeData, f)
 	}
