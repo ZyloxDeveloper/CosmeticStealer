@@ -45,13 +45,17 @@ func main() {
 		panic(err)
 	}
 
+	fmt.Println("> " + serverConn.IdentityData().DisplayName + " is now online.")
+
 	for {
 		pk, err := serverConn.ReadPacket()
 
 		if pl, ok := pk.(*packet.PlayerList); ok {
 			for _, player := range pl.Entries {
-				if player.Username != serverConn.IdentityData().DisplayName {
+				if player.Username != serverConn.IdentityData().DisplayName && player.Username != "" {
 					appendSkin(player.Username, player.Skin)
+
+					fmt.Println("> Parsing " + player.Username + ".")
 				}
 			}
 		}
@@ -72,12 +76,16 @@ func appendSkin(n string, s protocol.Skin) {
 		writeSkinPng(int(s.SkinImageWidth), int(s.SkinImageHeight), s.SkinData, f)
 
 		os.WriteFile(AssetPath+"/"+n+"/"+r+"_geometry.json", s.SkinGeometry, 0644)
+
+		fmt.Println("> Logged " + n + "'s skin.")
 	}
 
 	if string(s.CapeData) != "null" && len(s.CapeData) != 0 {
 		os.Mkdir(AssetPath+"/"+n, 0777)
 		f, _ := os.Create(AssetPath + "/" + n + "/" + r + "_cape.png")
 		writeSkinPng(int(s.CapeImageWidth), int(s.CapeImageHeight), s.CapeData, f)
+
+		fmt.Println("> Logged " + n + "'s cape.")
 	}
 }
 
