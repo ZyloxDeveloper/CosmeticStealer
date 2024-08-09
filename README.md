@@ -15,6 +15,12 @@ Welcome to **CosmeticStealer**! This tool is designed for educational purposes t
 
 **CosmeticStealer** uses the [gophertunnel](https://github.com/Sandertv/gophertunnel) library to intercept Minecraft skin packets. This allows you to log and analyze skin data from players on any Minecraft server you connect to. The tool captures skin data by logging into Xbox Live and then connecting to the desired Minecraft server.
 
+
+
+![img](https://cdn.discordapp.com/attachments/623673869177192462/1271348045442711572/75175146_geometry.png?ex=66b702a2&is=66b5b122&hm=5e8f9c6adb45c4b874edda030804d93ac97c937f9cae4aa4e4ada840d2fd8a13&)
+
+
+
 ## Prerequisites
 
 Before you start, ensure you have the following:
